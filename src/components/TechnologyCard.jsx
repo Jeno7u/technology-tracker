@@ -57,5 +57,4 @@ function TechnologyCard({ technologies, onToggleStatus, onUpdateNotes }) {
         </div>
     );
 }
-
 export default TechnologyCard;

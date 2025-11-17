@@ -1,0 +1,24 @@
+.technology-notes {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.technology-notes__input {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    min-height: 76px;
+    resize: vertical;
+    padding: 0.6rem;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    font-size: 0.95rem;
+    color: #0b1220;
+    background: #ffffff;
+}
+
+.technology-notes__input:focus {
+    outline: none;
+    border-color: #9fd3ff;
+    box-shadow: 0 0 0 4px rgba(15, 120, 255, 0.06);
+}

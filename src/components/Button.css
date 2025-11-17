@@ -1,0 +1,26 @@
+.btn {
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    background: #ffffff;
+    color: #083344;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 120ms ease, transform 100ms ease;
+}
+
+.btn:hover {
+    background: #f8fbff;
+    transform: translateY(-2px);
+}
+
+.btn--primary {
+    background: linear-gradient(180deg, #e6fffa, #d1fae5);
+    border-color: #bde8d8;
+}
+
+.btn--danger {
+    background: linear-gradient(180deg, #fff1f2, #ffe4e6);
+    border-color: #fecaca;
+    color: #7f1d1d;
+}
