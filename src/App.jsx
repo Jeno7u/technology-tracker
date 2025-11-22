@@ -39,12 +39,8 @@ function App() {
         markAllCompleted,
         resetAllStatuses,
         randomAdvance,
-        updateTechnologyNotes,
+        onChangeNote,
     } = useTechnologies(initialTechnologies);
-
-    // state and persistence handled by useTechnologies hook
-
-    // handlers are provided by useTechnologies
 
     const filteredByStatus = technologies.filter((t) => {
         if (filter === "all") return true;
@@ -54,7 +50,6 @@ function App() {
         return true;
     });
 
-    // Apply search (title or description) on top of status filtering
     const filteredTechnologies = filteredByStatus.filter((t) => {
         if (!searchQuery) return true;
         const q = searchQuery.toLowerCase();
@@ -63,8 +58,6 @@ function App() {
             (t.description && t.description.toLowerCase().includes(q))
         );
     });
-
-    // updateTechnologyNotes provided by useTechnologies
 
     return (
         <div className="App">
@@ -75,28 +68,7 @@ function App() {
                     onMarkAll={markAllCompleted}
                     onResetAll={resetAllStatuses}
                     onRandomAdvance={randomAdvance}
-                    onExport={() => {
-                        try {
-                            const dataStr = JSON.stringify(
-                                technologies,
-                                null,
-                                2
-                            );
-                            const blob = new Blob([dataStr], {
-                                type: "application/json",
-                            });
-                            const url = URL.createObjectURL(blob);
-                            const a = document.createElement("a");
-                            a.href = url;
-                            a.download = "technologies-export.json";
-                            document.body.appendChild(a);
-                            a.click();
-                            a.remove();
-                            URL.revokeObjectURL(url);
-                        } catch (e) {
-                            console.warn("Export failed:", e);
-                        }
-                    }}
+                    technologies={technologies}
                 />
 
                 <div
@@ -167,7 +139,7 @@ function App() {
                 <TechnologyCard
                     technologies={filteredTechnologies}
                     onToggleStatus={toggleStatus}
-                    onUpdateNotes={updateTechnologyNotes}
+                    onChangeNote={onChangeNote}
                 />
             </div>
         </div>

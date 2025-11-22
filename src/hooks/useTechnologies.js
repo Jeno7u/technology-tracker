@@ -1,31 +1,32 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
-export default function useTechnologies(initial = []) {
-    // Initialize state from localStorage if available to avoid
-    // overwriting stored data during first render/hydration.
-    const [technologies, setTechnologies] = useState(() => {
-        try {
-            const saved = localStorage.getItem("techTrackerData");
-            return saved ? JSON.parse(saved) : initial;
-        } catch (e) {
-            console.warn(
-                "Failed to read techTrackerData from localStorage:",
-                e
-            );
-            return initial;
-        }
-    });
+export default function useTechnologies(initialTechnologies) {
+    const [technologies, setTechnologies] = useState(initialTechnologies);
 
-    // Save on every technologies change
+    // хранение данных о выполнении первоначального рендере
+    const initialized = useRef(false);
+
+    // выполнение загрузки данных только при первом рендере
     useEffect(() => {
-        try {
+        if (!initialized.current) {
+            initialized.current = true;
+
+            const saved = localStorage.getItem("techTrackerData");
+            if (saved) {
+                setTechnologies(JSON.parse(saved));
+                console.log("Данные загружены из localStorage");
+            }
+        }
+    }, []);
+
+    // сохранение изменений technologies
+    useEffect(() => {
+        if (localStorage.getItem("techTrackerData") !== technologies) {
             localStorage.setItem(
                 "techTrackerData",
                 JSON.stringify(technologies)
             );
-            console.log("useTechnologies: saved techTrackerData", technologies);
-        } catch (e) {
-            console.warn("Failed to save techTrackerData:", e);
+            console.log("Данные сохранены в localStorage");
         }
     }, [technologies]);
 
@@ -65,30 +66,20 @@ export default function useTechnologies(initial = []) {
         });
     };
 
-    const updateTechnologyNotes = (techId, newNotes) => {
-        // debug: log note updates
-        console.log(`updateTechnologyNotes called for id=${techId}`, newNotes);
-        setTechnologies((prevTech) => {
-            let changed = false;
-            const next = prevTech.map((tech) => {
-                if (tech.id === techId) {
-                    if (tech.notes === newNotes) return tech;
-                    changed = true;
-                    return { ...tech, notes: newNotes };
-                }
-                return tech;
-            });
-            return changed ? next : prevTech;
-        });
+    const onChangeNote = (techId, newNotes) => {
+        setTechnologies((prevTech) =>
+            prevTech.map((tech) =>
+                tech.id === techId ? { ...tech, notes: newNotes } : tech
+            )
+        );
     };
 
     return {
         technologies,
-        setTechnologies,
         toggleStatus,
         markAllCompleted,
         resetAllStatuses,
         randomAdvance,
-        updateTechnologyNotes,
+        onChangeNote,
     };
 }

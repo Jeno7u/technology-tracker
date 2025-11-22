@@ -1,14 +1,7 @@
 import "./TechnologyCard.css";
 import TechnologyNotes from "./TechnologyNotes";
 
-function TechnologyCard({ technologies, onToggleStatus, onUpdateNotes }) {
-    const handleKeyDown = (e, id) => {
-        if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            onToggleStatus && onToggleStatus(id);
-        }
-    };
-
+function TechnologyCard({ technologies, onToggleStatus, onChangeNote }) {
     return (
         <div className="technologies">
             <h2>Technologies:</h2>
@@ -20,10 +13,7 @@ function TechnologyCard({ technologies, onToggleStatus, onUpdateNotes }) {
                             className={`technology-card technology-card--${technologie.status}`}
                             role="button"
                             tabIndex={0}
-                            onClick={() =>
-                                onToggleStatus && onToggleStatus(technologie.id)
-                            }
-                            onKeyDown={(e) => handleKeyDown(e, technologie.id)}
+                            onClick={() => onToggleStatus(technologie.id)}
                         >
                             <div className="technology-card__title">
                                 <h1>{technologie.title}</h1>
@@ -43,11 +33,8 @@ function TechnologyCard({ technologies, onToggleStatus, onUpdateNotes }) {
                                 </div>
                                 <TechnologyNotes
                                     notes={technologie.notes}
-                                    ariaLabel={`Notes for ${technologie.title}`}
-                                    onChange={(val) =>
-                                        onUpdateNotes &&
-                                        onUpdateNotes(technologie.id, val)
-                                    }
+                                    onChangeNote={onChangeNote}
+                                    techId={technologie.id}
                                 />
                             </div>
                         </li>

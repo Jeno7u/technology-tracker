@@ -3,7 +3,12 @@ import "./QuickActions.css";
 import Button from "./Button";
 import ConfirmModal from "./ConfirmModal";
 
-function QuickActions({ onMarkAll, onResetAll, onRandomAdvance, onExport }) {
+function QuickActions({
+    onMarkAll,
+    onResetAll,
+    onRandomAdvance,
+    technologies,
+}) {
     const [confirmOpen, setConfirmOpen] = useState(false);
     const [confirmConfig, setConfirmConfig] = useState({});
 
@@ -32,6 +37,25 @@ function QuickActions({ onMarkAll, onResetAll, onRandomAdvance, onExport }) {
                 setConfirmOpen(false);
             }
         );
+    };
+
+    const onExport = () => {
+        try {
+            const dataStr = JSON.stringify(technologies, null, 2);
+            const blob = new Blob([dataStr], {
+                type: "application/json",
+            });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "technologies-export.json";
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            URL.revokeObjectURL(url);
+        } catch (e) {
+            console.warn("Export failed:", e);
+        }
     };
 
     return (
