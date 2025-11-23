@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import "./App.css";
+
 import TechnologyCard from "./components/TechnologyCard.jsx";
 import ProgressHeader from "./components/ProgressHeader.jsx";
 import QuickActions from "./components/QuickActions.jsx";
-import "./App.css";
+import FilterTechnologies from "./components/FilterTechnologies.jsx";
+
 import useTechnologies from "./hooks/useTechnologies";
+import useFilterTechnologies from "./hooks/useFilterTechnologies.js";
 
 const initialTechnologies = [
     {
@@ -30,9 +33,6 @@ const initialTechnologies = [
 ];
 
 function App() {
-    const [filter, setFilter] = useState("all");
-    const [searchQuery, setSearchQuery] = useState("");
-
     const {
         technologies,
         toggleStatus,
@@ -42,26 +42,17 @@ function App() {
         onChangeNote,
     } = useTechnologies(initialTechnologies);
 
-    const filteredByStatus = technologies.filter((t) => {
-        if (filter === "all") return true;
-        if (filter === "not-started") return t.status === "not-started";
-        if (filter === "in-progress") return t.status === "in-progress";
-        if (filter === "completed") return t.status === "completed";
-        return true;
-    });
-
-    const filteredTechnologies = filteredByStatus.filter((t) => {
-        if (!searchQuery) return true;
-        const q = searchQuery.toLowerCase();
-        return (
-            (t.title && t.title.toLowerCase().includes(q)) ||
-            (t.description && t.description.toLowerCase().includes(q))
-        );
-    });
+    const {
+        filter,
+        setFilter,
+        searchQuery,
+        setSearchQuery,
+        filteredTechnologies,
+    } = useFilterTechnologies(technologies);
 
     return (
         <div className="App">
-            <div className="container">
+            <div className="main-content">
                 <ProgressHeader technologies={technologies} />
 
                 <QuickActions
@@ -70,71 +61,13 @@ function App() {
                     onRandomAdvance={randomAdvance}
                     technologies={technologies}
                 />
-
-                <div
-                    className="search-box"
-                    style={{
-                        display: "flex",
-                        gap: "0.5rem",
-                        alignItems: "center",
-                        margin: "1rem 0",
-                    }}
-                >
-                    <input
-                        type="text"
-                        placeholder="Поиск технологий..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        style={{
-                            flex: 1,
-                            padding: "0.45rem 0.6rem",
-                            borderRadius: 6,
-                            border: "1px solid #d1d5db",
-                        }}
-                    />
-                    <span style={{ fontSize: "0.95rem", color: "#374151" }}>
-                        Найдено: {filteredTechnologies.length}
-                    </span>
-                </div>
-
-                <div
-                    className="filters"
-                    role="tablist"
-                    aria-label="Filter technologies"
-                >
-                    <button
-                        className={`filter-btn ${
-                            filter === "all" ? "active" : ""
-                        }`}
-                        onClick={() => setFilter("all")}
-                    >
-                        All
-                    </button>
-                    <button
-                        className={`filter-btn ${
-                            filter === "not-started" ? "active" : ""
-                        }`}
-                        onClick={() => setFilter("not-started")}
-                    >
-                        Not started
-                    </button>
-                    <button
-                        className={`filter-btn ${
-                            filter === "in-progress" ? "active" : ""
-                        }`}
-                        onClick={() => setFilter("in-progress")}
-                    >
-                        In progress
-                    </button>
-                    <button
-                        className={`filter-btn ${
-                            filter === "completed" ? "active" : ""
-                        }`}
-                        onClick={() => setFilter("completed")}
-                    >
-                        Completed
-                    </button>
-                </div>
+                <FilterTechnologies
+                    filter={filter}
+                    setFilter={setFilter}
+                    searchQuery={searchQuery}
+                    setSearchQuery={setSearchQuery}
+                    filteredTechnologies={filteredTechnologies}
+                />
 
                 <TechnologyCard
                     technologies={filteredTechnologies}
