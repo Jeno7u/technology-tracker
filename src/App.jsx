@@ -1,12 +1,19 @@
 import "./App.css";
+import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import TechnologyCard from "./components/TechnologyCard.jsx";
-import ProgressHeader from "./components/ProgressHeader.jsx";
-import QuickActions from "./components/QuickActions.jsx";
-import FilterTechnologies from "./components/FilterTechnologies.jsx";
+// import TechnologyCard from "./components/TechnologyCard.jsx";
+// import ProgressHeader from "./components/ProgressHeader.jsx";
+// import QuickActions from "./components/QuickActions.jsx";
+// import FilterTechnologies from "./components/FilterTechnologies.jsx";
+import NavigationMenu from "./components/NavigationMenu.jsx";
+
+import Home from "./pages/Home.jsx";
+import TechnologyList from "./pages/TechnologyList.jsx";
+import TechnologyDetail from "./pages/TechnologyDetail.jsx";
+import AddTechnology from "./pages/AddTechnology.jsx";
 
 import useTechnologies from "./hooks/useTechnologies";
-import useFilterTechnologies from "./hooks/useFilterTechnologies.js";
 
 const initialTechnologies = [
     {
@@ -33,49 +40,52 @@ const initialTechnologies = [
 ];
 
 function App() {
-    const {
-        technologies,
-        toggleStatus,
-        markAllCompleted,
-        resetAllStatuses,
-        randomAdvance,
-        onChangeNote,
-    } = useTechnologies(initialTechnologies);
+    const { technologies, setTechnologies } =
+        useTechnologies(initialTechnologies);
 
-    const {
-        filter,
-        setFilter,
-        searchQuery,
-        setSearchQuery,
-        filteredTechnologies,
-    } = useFilterTechnologies(technologies);
+    const [filter, setFilter] = useState("all");
+    const [searchQuery, setSearchQuery] = useState("");
 
     return (
-        <div className="App">
-            <div className="main-content">
-                <ProgressHeader technologies={technologies} />
+        <Router>
+            <div className="App">
+                <div className="main-nav">
+                    <NavigationMenu />
+                </div>
+                <div className="main-content">
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={
+                                <Home
+                                    technologies={technologies}
+                                    setTechnologies={setTechnologies}
+                                    filter={filter}
+                                    setFilter={setFilter}
+                                    searchQuery={searchQuery}
+                                    setSearchQuery={setSearchQuery}
+                                />
+                            }
+                        />
 
-                <QuickActions
-                    onMarkAll={markAllCompleted}
-                    onResetAll={resetAllStatuses}
-                    onRandomAdvance={randomAdvance}
-                    technologies={technologies}
-                />
-                <FilterTechnologies
-                    filter={filter}
-                    setFilter={setFilter}
-                    searchQuery={searchQuery}
-                    setSearchQuery={setSearchQuery}
-                    filteredTechnologies={filteredTechnologies}
-                />
+                        <Route
+                            path="/technologies"
+                            element={<TechnologyList />}
+                        />
 
-                <TechnologyCard
-                    technologies={filteredTechnologies}
-                    onToggleStatus={toggleStatus}
-                    onChangeNote={onChangeNote}
-                />
+                        <Route
+                            path="/technology/:techId"
+                            element={<TechnologyDetail />}
+                        />
+
+                        <Route
+                            path="/add-technology"
+                            element={<AddTechnology />}
+                        />
+                    </Routes>
+                </div>
             </div>
-        </div>
+        </Router>
     );
 }
 

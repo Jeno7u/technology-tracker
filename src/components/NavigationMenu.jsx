@@ -1,28 +1,52 @@
-import "./NavigationMenu.css";
+import { Link, useLocation } from "react-router-dom";
 
-import { Link } from "react-router-dom";
+function Navigation() {
+    const location = useLocation();
 
-function NavigationMenu() {
     return (
-        <div className="navigation-menu">
-            <nav className="main-nav">
-                <div className="nav-brand">
-                    <h2>Мое Приложение</h2>
-                </div>
-                <ul className="nav-links">
-                    <li>
-                        <Link to="/">Главная</Link>
-                    </li>
-                    <li>
-                        <Link to="/about">О нас</Link>
-                    </li>
-                    <li>
-                        <Link to="/contact">Контакты</Link>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+        <nav className="main-navigation">
+            <div className="nav-brand">
+                <Link to="/">
+                    <h2>🚀 Трекер технологий</h2>
+                </Link>
+            </div>
+
+            <ul className="nav-menu">
+                <li>
+                    <Link
+                        to="/"
+                        className={location.pathname === "/" ? "active" : ""}
+                    >
+                        Главная
+                    </Link>
+                </li>
+                <li>
+                    <Link
+                        to="/technologies"
+                        className={
+                            location.pathname === "/technologies"
+                                ? "active"
+                                : ""
+                        }
+                    >
+                        Все технологии
+                    </Link>
+                </li>
+                <li>
+                    <Link
+                        to="/add-technology"
+                        className={
+                            location.pathname === "/add-technology"
+                                ? "active"
+                                : ""
+                        }
+                    >
+                        Добавить технологию
+                    </Link>
+                </li>
+            </ul>
+        </nav>
     );
 }
 
-export default NavigationMenu;
+export default Navigation;

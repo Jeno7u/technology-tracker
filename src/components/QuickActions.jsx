@@ -2,19 +2,37 @@ import React, { useState } from "react";
 import "./QuickActions.css";
 import Button from "./Button";
 import ConfirmModal from "./ConfirmModal";
+import { nextStatus } from "../utils/utils";
 
-function QuickActions({
-    onMarkAll,
-    onResetAll,
-    onRandomAdvance,
-    technologies,
-}) {
+function QuickActions({ technologies, setTechnologies }) {
     const [confirmOpen, setConfirmOpen] = useState(false);
     const [confirmConfig, setConfirmConfig] = useState({});
 
     const openConfirm = (title, message, onConfirm) => {
         setConfirmConfig({ title, message, onConfirm });
         setConfirmOpen(true);
+    };
+
+    const onMarkAll = () => {
+        setTechnologies((prev) =>
+            prev.map((t) => ({ ...t, status: "completed" }))
+        );
+    };
+
+    const onResetAll = () => {
+        setTechnologies((prev) =>
+            prev.map((t) => ({ ...t, status: "not-started" }))
+        );
+    };
+
+    const onRandomAdvance = () => {
+        setTechnologies((prev) => {
+            if (prev.length === 0) return prev;
+            const idx = Math.floor(Math.random() * prev.length);
+            return prev.map((t, i) =>
+                i === idx ? { ...t, status: nextStatus(t.status) } : t
+            );
+        });
     };
 
     const handleMarkAll = () => {

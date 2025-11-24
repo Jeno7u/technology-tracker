@@ -1,7 +1,24 @@
 import "./TechnologyCard.css";
 import TechnologyNotes from "./TechnologyNotes";
+import { nextStatus } from "../utils/utils";
 
-function TechnologyCard({ technologies, onToggleStatus, onChangeNote }) {
+function TechnologyCard({ technologies, setTechnologies }) {
+    const onToggleStatus = (id) => {
+        setTechnologies((prev) =>
+            prev.map((t) =>
+                t.id === id ? { ...t, status: nextStatus(t.status) } : t
+            )
+        );
+    };
+
+    const onChangeNotes = (techId, newNotes) => {
+        setTechnologies((prevTech) =>
+            prevTech.map((tech) =>
+                tech.id === techId ? { ...tech, notes: newNotes } : tech
+            )
+        );
+    };
+
     return (
         <div className="technologies">
             <h2>Technologies:</h2>
@@ -12,7 +29,6 @@ function TechnologyCard({ technologies, onToggleStatus, onChangeNote }) {
                             key={technologie.id}
                             className={`technology-card technology-card--${technologie.status}`}
                             role="button"
-                            tabIndex={0}
                             onClick={() => onToggleStatus(technologie.id)}
                         >
                             <div className="technology-card__title">
@@ -33,7 +49,7 @@ function TechnologyCard({ technologies, onToggleStatus, onChangeNote }) {
                                 </div>
                                 <TechnologyNotes
                                     notes={technologie.notes}
-                                    onChangeNote={onChangeNote}
+                                    onChangeNotes={onChangeNotes}
                                     techId={technologie.id}
                                 />
                             </div>
@@ -44,4 +60,5 @@ function TechnologyCard({ technologies, onToggleStatus, onChangeNote }) {
         </div>
     );
 }
+
 export default TechnologyCard;

@@ -1,11 +1,11 @@
 import "./FilterTechnologies.css";
 
 function FilterTechnologies({
+    filteredTechnologies,
     filter,
     setFilter,
     searchQuery,
     setSearchQuery,
-    filteredTechnologies,
 }) {
     return (
         <div>
