@@ -1,3 +1,5 @@
+import "./NavigationMenu.css";
+
 import { Link, useLocation } from "react-router-dom";
 
 function Navigation() {
@@ -42,6 +44,26 @@ function Navigation() {
                         }
                     >
                         Добавить технологию
+                    </Link>
+                </li>
+                <li>
+                    <Link
+                        to="/progress"
+                        className={
+                            location.pathname === "/progress" ? "active" : ""
+                        }
+                    >
+                        Статистика прогресса
+                    </Link>
+                </li>
+                <li>
+                    <Link
+                        to="/settings"
+                        className={
+                            location.pathname === "/progress" ? "active" : ""
+                        }
+                    >
+                        Настройки
                     </Link>
                 </li>
             </ul>

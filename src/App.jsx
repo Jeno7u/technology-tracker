@@ -12,6 +12,8 @@ import Home from "./pages/Home.jsx";
 import TechnologyList from "./pages/TechnologyList.jsx";
 import TechnologyDetail from "./pages/TechnologyDetail.jsx";
 import AddTechnology from "./pages/AddTechnology.jsx";
+import TechnologyProgress from "./pages/TechnologyProgress.jsx";
+import TechnologySettings from "./pages/TechnologySettings.jsx";
 
 import useTechnologies from "./hooks/useTechnologies";
 
@@ -75,12 +77,36 @@ function App() {
 
                         <Route
                             path="/technology/:techId"
-                            element={<TechnologyDetail />}
+                            element={
+                                <TechnologyDetail
+                                    technologies={technologies}
+                                    setTechnologies={setTechnologies}
+                                />
+                            }
                         />
 
                         <Route
                             path="/add-technology"
                             element={<AddTechnology />}
+                        />
+
+                        <Route
+                            path="/progress"
+                            element={
+                                <TechnologyProgress
+                                    technologies={technologies}
+                                />
+                            }
+                        />
+
+                        <Route
+                            path="/settings"
+                            element={
+                                <TechnologySettings
+                                    technologies={technologies}
+                                    setTechnologies={setTechnologies}
+                                />
+                            }
                         />
                     </Routes>
                 </div>
