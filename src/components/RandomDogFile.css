@@ -1,0 +1,26 @@
+.random-dog-file {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 120px;
+}
+
+.random-dog-image,
+.random-dog-video {
+    max-width: 100%;
+    max-height: 420px;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(16, 24, 40, 0.06);
+}
+
+.rd-loading,
+.rd-error,
+.rd-empty,
+.rd-unknown {
+    color: #475569;
+    font-weight: 600;
+}
+
+.rd-error {
+    color: #b91c1c;
+}

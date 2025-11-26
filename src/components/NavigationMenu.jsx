@@ -58,6 +58,16 @@ function Navigation() {
                 </li>
                 <li>
                     <Link
+                        to="/random-dog"
+                        className={
+                            location.pathname === "/progress" ? "active" : ""
+                        }
+                    >
+                        Собакен
+                    </Link>
+                </li>
+                <li>
+                    <Link
                         to="/settings"
                         className={
                             location.pathname === "/progress" ? "active" : ""

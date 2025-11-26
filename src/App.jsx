@@ -14,6 +14,7 @@ import TechnologyDetail from "./pages/TechnologyDetail.jsx";
 import AddTechnology from "./pages/AddTechnology.jsx";
 import TechnologyProgress from "./pages/TechnologyProgress.jsx";
 import TechnologySettings from "./pages/TechnologySettings.jsx";
+import RandomDog from "./pages/RandomDog.jsx";
 
 import useTechnologies from "./hooks/useTechnologies";
 
@@ -98,6 +99,8 @@ function App() {
                                 />
                             }
                         />
+
+                        <Route path="/random-dog" element={<RandomDog />} />
 
                         <Route
                             path="/settings"

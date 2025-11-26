@@ -1,0 +1,28 @@
+.randomdog-page .page-header {
+    margin-bottom: 12px;
+}
+
+.dogfile-preview {
+    display: flex;
+    justify-content: center;
+    margin: 12px 0;
+}
+
+.dogfile-refresh {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.dogfile-refresh .btn {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    background: #0ea5a4;
+    color: white;
+    cursor: pointer;
+}
+
+.dogfile-refresh .btn:active {
+    transform: translateY(1px);
+}
