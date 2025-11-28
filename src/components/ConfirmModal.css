@@ -9,12 +9,13 @@
 }
 
 .confirm-modal {
-    background: #fff;
+    background: var(--card-bg);
     padding: 1rem 1.25rem;
     border-radius: 10px;
     max-width: 420px;
     width: 100%;
     box-shadow: 0 12px 40px rgba(2, 6, 23, 0.15);
+    color: var(--text-color);
 }
 
 .confirm-modal__title {
@@ -23,7 +24,7 @@
 }
 
 .confirm-modal__body {
-    color: #334155;
+    color: var(--muted);
     margin-bottom: 1rem;
 }
 

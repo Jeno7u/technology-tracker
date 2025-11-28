@@ -1,0 +1,56 @@
+.study-form {
+    max-width: 700px;
+    margin: 0 auto 16px;
+    background: var(--card-bg);
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.study-form .field {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.study-form label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text-color);
+}
+
+.study-form input,
+.study-form select {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--control-border);
+    background: var(--input-bg);
+    color: var(--control-text);
+}
+
+.field-row {
+    display: flex;
+    gap: 12px;
+}
+.field-row .field {
+    flex: 1;
+}
+
+.field-error {
+    color: #f43f5e;
+    margin-top: 6px;
+    font-size: 0.9rem;
+}
+
+.study-form .actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+@media (max-width: 640px) {
+    .field-row {
+        flex-direction: column;
+    }
+}

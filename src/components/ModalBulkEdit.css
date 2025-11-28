@@ -1,0 +1,42 @@
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(2, 6, 23, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1200;
+}
+
+.modal-content {
+    position: relative;
+    background: var(--card-bg);
+    color: var(--text-color);
+    width: 92%;
+    max-width: 820px;
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 12px 40px rgba(2, 6, 23, 0.2);
+}
+
+.modal-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: var(--muted);
+}
+
+.modal-body {
+    margin-top: 6px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 12px;
+}

@@ -1,5 +1,5 @@
 .technologies {
-    background: #ffffffcc;
+    background: var(--card-bg);
     border-radius: 12px;
     padding: 1.25rem;
     box-shadow: 0 6px 20px rgba(16, 24, 40, 0.08);
@@ -24,8 +24,12 @@
 }
 
 .technologie-card li {
-    background: linear-gradient(180deg, #ffffff, #fbfdff);
-    border: 1px solid #e6eef8;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.02),
+        rgba(255, 255, 255, 0.04)
+    );
+    border: 1px solid rgba(230, 235, 248, 0.12);
     border-radius: 10px;
     padding: 0.85rem;
     display: flex;
@@ -68,13 +72,13 @@
 
 .technology-card__title h1 {
     font-size: 1rem;
-    color: #062635;
+    color: var(--text-color);
     margin-bottom: 0.15rem;
 }
 
 .technology-card__desc p {
     margin: 0;
-    color: #355168;
+    color: var(--muted);
     font-size: 0.9rem;
 }
 
@@ -132,10 +136,10 @@
     resize: vertical;
     padding: 0.5rem;
     border-radius: 8px;
-    border: 1px solid #dbe7f0;
+    border: 1px solid rgba(219, 231, 240, 0.6);
     font-size: 0.9rem;
-    color: #0b1220;
-    background: #fbfdff;
+    color: var(--text-color);
+    background: rgba(255, 255, 255, 0.02);
 }
 
 .technology-card__notes textarea:focus {

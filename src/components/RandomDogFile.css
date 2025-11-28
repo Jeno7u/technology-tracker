@@ -17,10 +17,10 @@
 .rd-error,
 .rd-empty,
 .rd-unknown {
-    color: #475569;
+    color: var(--muted);
     font-weight: 600;
 }
 
 .rd-error {
-    color: #b91c1c;
+    color: #f87171; /* use visible error red (still works in dark) */
 }

@@ -88,7 +88,12 @@ function App() {
 
                         <Route
                             path="/add-technology"
-                            element={<AddTechnology />}
+                            element={
+                                <AddTechnology
+                                    technologies={technologies}
+                                    setTechnologies={setTechnologies}
+                                />
+                            }
                         />
 
                         <Route

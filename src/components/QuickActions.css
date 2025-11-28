@@ -8,22 +8,26 @@
 .qa-btn {
     padding: 0.5rem 0.75rem;
     border-radius: 8px;
-    border: 1px solid #dbeafe;
-    background: #ffffff;
-    color: #083344;
+    border: 1px solid rgba(219, 234, 254, 0.12);
+    background: var(--button-bg);
+    color: var(--button-text);
     font-weight: 600;
     cursor: pointer;
     transition: background 120ms ease, transform 100ms ease;
 }
 
 .qa-btn:hover {
-    background: #f8fbff;
+    background: rgba(248, 250, 252, 0.6);
     transform: translateY(-2px);
 }
 
 .qa--primary {
-    background: linear-gradient(180deg, #e6fffa, #d1fae5);
-    border-color: #bde8d8;
+    background: linear-gradient(
+        180deg,
+        rgba(230, 255, 250, 0.08),
+        rgba(209, 250, 229, 0.06)
+    );
+    border-color: rgba(189, 232, 216, 0.12);
 }
 
 /* Filters styling (small and convenient) */
@@ -38,13 +42,13 @@
     padding: 0.4rem 0.6rem;
     border-radius: 999px;
     border: 1px solid transparent;
-    background: #f3f4f6;
-    color: #273449;
+    background: rgba(#071428, 0.6);
+    color: var(--muted);
     font-weight: 700;
     cursor: pointer;
 }
 
 .filter-btn.active {
-    background: #e6f2ff;
-    border-color: #93c5fd;
+    background: rgba(230, 242, 255, 0.08);
+    border-color: rgba(147, 197, 253, 0.12);
 }

@@ -1,0 +1,40 @@
+.bulk-edit {
+    background: var(--card-bg);
+    padding: 12px;
+    border-radius: 8px;
+    max-width: 900px;
+    max-height: 420px;
+    overflow: auto;
+}
+
+.bulk-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.bulk-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 280px;
+    overflow: auto;
+}
+.bulk-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px;
+    border-radius: 6px;
+}
+.bulk-item input {
+    margin: 0;
+}
+.bulk-title {
+    flex: 1;
+    color: var(--text-color);
+}
+.bulk-status {
+    color: var(--muted);
+    font-size: 0.9rem;
+}

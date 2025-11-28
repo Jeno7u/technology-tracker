@@ -2,25 +2,34 @@
     padding: 0.5rem 0.75rem;
     border-radius: 8px;
     border: 1px solid transparent;
-    background: #ffffff;
-    color: #083344;
+    background: var(--button-bg);
+    color: var(--button-text);
     font-weight: 600;
     cursor: pointer;
     transition: background 120ms ease, transform 100ms ease;
 }
 
 .btn:hover {
-    background: #f8fbff;
+    background: rgba(248, 250, 252, 0.6);
     transform: translateY(-2px);
 }
 
 .btn--primary {
-    background: linear-gradient(180deg, #e6fffa, #d1fae5);
-    border-color: #bde8d8;
+    background: linear-gradient(
+        180deg,
+        rgba(230, 255, 250, 0.06),
+        rgba(209, 250, 229, 0.04)
+    );
+    border-color: rgba(189, 232, 216, 0.12);
+    color: var(--button-text);
 }
 
 .btn--danger {
-    background: linear-gradient(180deg, #fff1f2, #ffe4e6);
-    border-color: #fecaca;
-    color: #7f1d1d;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 241, 242, 0.06),
+        rgba(255, 228, 230, 0.04)
+    );
+    border-color: rgba(254, 202, 202, 0.12);
+    color: #f43f5e;
 }

@@ -1,6 +1,7 @@
 import "./NavigationMenu.css";
 
 import { Link, useLocation } from "react-router-dom";
+import ThemeToggle from "./ThemeToggle";
 
 function Navigation() {
     const location = useLocation();
@@ -11,6 +12,9 @@ function Navigation() {
                 <Link to="/">
                     <h2>🚀 Трекер технологий</h2>
                 </Link>
+                <div style={{ marginLeft: 8 }}>
+                    <ThemeToggle />
+                </div>
             </div>
 
             <ul className="nav-menu">
@@ -60,7 +64,7 @@ function Navigation() {
                     <Link
                         to="/random-dog"
                         className={
-                            location.pathname === "/progress" ? "active" : ""
+                            location.pathname === "/random-dog" ? "active" : ""
                         }
                     >
                         Собакен
@@ -70,7 +74,7 @@ function Navigation() {
                     <Link
                         to="/settings"
                         className={
-                            location.pathname === "/progress" ? "active" : ""
+                            location.pathname === "/settings" ? "active" : ""
                         }
                     >
                         Настройки

@@ -1,6 +1,6 @@
 .progress-header {
-    background: linear-gradient(180deg, #ffffff, #f8fbff);
-    border: 1px solid #e6eef8;
+    background: var(--card-bg);
+    border: 1px solid rgba(230, 235, 248, 0.12);
     margin-top: 1.2rem;
     padding: 0.9rem;
     border-radius: 10px;
@@ -29,17 +29,17 @@
 
 .stat__label {
     font-size: 0.75rem;
-    color: #546e7a;
+    color: var(--muted);
 }
 
 .stat__value {
     font-weight: 700;
     font-size: 1.05rem;
-    color: #08263a;
+    color: var(--text-color);
 }
 
 .progress-header__bar {
-    background: #eef6ff;
+    background: rgba(0, 0, 0, 0.06);
     height: 12px;
     border-radius: 999px;
     overflow: hidden;
@@ -59,7 +59,7 @@
 }
 
 .progress-header__fill.full {
-    background: linear-gradient(90deg, #d1fae5, #86efac);
+    background: linear-gradient(90deg, #d1fae5, var(--primary, #86efac));
 }
 
 .sr-only {

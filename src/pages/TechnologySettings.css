@@ -7,10 +7,12 @@
 .settings-card {
     width: 100%;
     max-width: 900px;
-    background: #ffffff;
+    background: var(--card-bg);
+    color: var(--text-color);
     padding: 18px;
     border-radius: 10px;
     box-shadow: 0 8px 24px rgba(16, 24, 40, 0.06);
+    transition: background 200ms ease, color 200ms ease;
 }
 
 .settings-card h1 {
@@ -19,6 +21,25 @@
 
 .settings-section {
     margin-top: 14px;
+}
+
+.bulk-launch-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.open-bulk-btn {
+    background: var(--button-bg, #2563eb);
+    color: var(--button-text, #ffffff);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.open-bulk-btn:hover {
+    opacity: 0.95;
 }
 
 .import-row {
@@ -34,7 +55,7 @@
     gap: 8px;
     padding: 8px 12px;
     border-radius: 8px;
-    background: #f8fafc;
+    background: var(--input-bg);
     cursor: pointer;
 }
 
@@ -43,12 +64,13 @@
 }
 
 .clear-btn {
-    background: #fff6f6;
-    border: 1px solid #ffd9d9;
+    background: transparent;
+    border: 1px solid var(--control-border);
+    color: var(--muted);
 }
 
 .hint {
-    color: #64748b;
+    color: var(--muted);
     margin-top: 8px;
     font-size: 0.9rem;
 }
@@ -58,4 +80,13 @@
         flex-direction: column;
         align-items: stretch;
     }
+}
+
+.import-actions .export-btn,
+.import-actions .clear-btn {
+    transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+
+.open-bulk-btn {
+    box-shadow: none;
 }
